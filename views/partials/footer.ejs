@@ -1,0 +1,56 @@
+  </main>
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copyright">&copy; <%= new Date().getFullYear() %> BlogHub. Crafted for creators and readers.</p>
+      <div class="footer-nav">
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript for Carousel Slide Navigation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.carousel-track');
+      const prevBtn = document.querySelector('.carousel-btn.prev');
+      const nextBtn = document.querySelector('.carousel-btn.next');
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('.carousel-dot');
+
+      if (!track || slides.length === 0) return;
+
+      let currentIndex = 0;
+
+      function goToSlide(index) {
+        if (index < 0) {
+          currentIndex = slides.length - 1;
+        } else if (index >= slides.length) {
+          currentIndex = 0;
+        } else {
+          currentIndex = index;
+        }
+
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+      }
+
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => goToSlide(idx));
+      });
+    });
+  </script>
+</body>
+</html>

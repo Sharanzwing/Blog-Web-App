@@ -1,0 +1,110 @@
+<%- include("partials/header.ejs") %> 
+
+<section class="blog-hero-section">
+  <!-- Middle Part: Carousel displaying posted items as slides -->
+  <div class="carousel-container">
+    <div class="carousel-header">
+      <div class="carousel-badge">Editorial Showcase</div>
+      <h2 class="carousel-title">Posted Stories & Articles</h2>
+      <p class="carousel-subtitle">Swipe or use controls to browse through published items.</p>
+    </div>
+
+    <!-- Carousel Component Viewport -->
+    <div class="carousel-viewport">
+      <button type="button" class="carousel-btn prev" aria-label="Previous Slide">&#10094;</button>
+      
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track">
+          
+          <!-- Slide 1 (Sample item / Template for EJS dynamic rendering) -->
+          <article class="carousel-slide">
+            <div class="slide-card">
+              <div class="slide-tag">TECHNOLOGY &bull; 5 min read</div>
+              <h3 class="slide-heading">Building Scalable Web Applications with Modern Node.js</h3>
+              <p class="slide-excerpt">
+                Explore best practices for architecting clean REST APIs, templating dynamic EJS views, and managing state across scalable web services.
+              </p>
+              <div class="slide-meta">
+                <div class="author-avatar">SR</div>
+                <div class="author-details">
+                  <span class="author-name">Sharan Raj</span>
+                  <span class="post-date">Published on Sept 11, 2026</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2 -->
+          <article class="carousel-slide">
+            <div class="slide-card">
+              <div class="slide-tag">DESIGN SYSTEMS &bull; 4 min read</div>
+              <h3 class="slide-heading">Modern UI/UX Principles for Editorial & Content Platforms</h3>
+              <p class="slide-excerpt">
+                How typography rhythm, negative space, and responsive card components combine to deliver a pleasant, frictionless reading experience.
+              </p>
+              <div class="slide-meta">
+                <div class="author-avatar">EV</div>
+                <div class="author-details">
+                  <span class="author-name">Editorial Team</span>
+                  <span class="post-date">Published on Sept 10, 2026</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3 -->
+          <article class="carousel-slide">
+            <div class="slide-card">
+              <div class="slide-tag">DEVELOPMENT &bull; 6 min read</div>
+              <h3 class="slide-heading">Mastering Express Routing and Middleware Architecture</h3>
+              <p class="slide-excerpt">
+                A hands-on guide to structuring Express.js controllers, handling dynamic URL parameters, and building robust CRUD operations.
+              </p>
+              <div class="slide-meta">
+                <div class="author-avatar">DEV</div>
+                <div class="author-details">
+                  <span class="author-name">Code Contributor</span>
+                  <span class="post-date">Published on Sept 08, 2026</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <button type="button" class="carousel-btn next" aria-label="Next Slide">&#10095;</button>
+    </div>
+
+    <!-- Carousel Pagination Indicators (Dots) -->
+    <div class="carousel-indicators">
+      <button type="button" class="carousel-dot active" aria-label="Slide 1"></button>
+      <button type="button" class="carousel-dot" aria-label="Slide 2"></button>
+      <button type="button" class="carousel-dot" aria-label="Slide 3"></button>
+    </div>
+  </div>
+
+  <!-- Bottom Part: 3 Action Buttons (Post, Update, Delete) -->
+  <div class="bottom-action-bar">
+    <div class="action-bar-inner">
+      <!-- Post Button (Create) -->
+      <button type="button" class="btn btn-post" id="btnPost">
+        <span class="btn-icon">+</span>
+        <span class="btn-text">Post</span>
+      </button>
+
+      <!-- Update Button (Update/Edit) -->
+      <button type="button" class="btn btn-update" id="btnUpdate">
+        <span class="btn-icon">&#9998;</span>
+        <span class="btn-text">Update</span>
+      </button>
+
+      <!-- Delete Button (Delete/Remove) -->
+      <button type="button" class="btn btn-delete" id="btnDelete">
+        <span class="btn-icon">&#128465;</span>
+        <span class="btn-text">Delete</span>
+      </button>
+    </div>
+  </div>
+</section>
+<%- include("partials/footer.ejs") %> 
