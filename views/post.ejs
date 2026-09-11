@@ -1,0 +1,131 @@
+<!-- You can include the header partial here: <%- include("partials/header.ejs") %> -->
+
+<section class="form-page-section">
+  <div class="form-card-container">
+    
+    <!-- Top Back Navigation -->
+    <div class="form-top-nav">
+      <a href="/" class="back-link">
+        <span class="back-arrow">&#8592;</span> Back to Stories
+      </a>
+      <span class="form-badge">New Article</span>
+    </div>
+
+    <!-- Form Card Header -->
+    <div class="form-header">
+      <h1 class="form-title">Create a New Story</h1>
+      <p class="form-subtitle">Fill in the fields below to publish a new article card to the showcase carousel.</p>
+    </div>
+
+    <!-- Post Creation Form -->
+    <form action="/post" method="POST" class="post-form" id="createPostForm">
+      
+      <!-- Field 1: slide-tag (Dropdown select) -->
+      <div class="form-group">
+        <label for="slideTag" class="form-label">
+          Category / Topic Tag <span class="required">*</span>
+        </label>
+        <div class="select-wrapper">
+          <select name="slideTag" id="slideTag" class="form-select slide-tag" required>
+            <option value="" disabled selected>Select a topic category...</option>
+            <option value="TECHNOLOGY &bull; 5 min read">Technology (5 min read)</option>
+            <option value="DESIGN SYSTEMS &bull; 4 min read">Design Systems (4 min read)</option>
+            <option value="DEVELOPMENT &bull; 6 min read">Development (6 min read)</option>
+            <option value="AI & MACHINE LEARNING &bull; 5 min read">AI & Machine Learning (5 min read)</option>
+            <option value="CLOUD & ARCHITECTURE &bull; 7 min read">Cloud & Architecture (7 min read)</option>
+            <option value="EDITORIAL & OPINION &bull; 3 min read">Editorial & Opinion (3 min read)</option>
+          </select>
+        </div>
+        <span class="form-helper">Specifies the category badge displayed at the top of the slide card.</span>
+      </div>
+
+      <!-- Field 2: slide-heading -->
+      <div class="form-group">
+        <label for="slideHeading" class="form-label">
+          Slide Heading / Title <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          name="slideHeading" 
+          id="slideHeading" 
+          class="form-input slide-heading" 
+          placeholder="e.g. Mastering Asynchronous JavaScript and Event Loops" 
+          list="headingSuggestions"
+          required 
+          autocomplete="off"
+        />
+        <datalist id="headingSuggestions">
+          <option value="Building Scalable Web Applications with Modern Node.js"></option>
+          <option value="Modern UI/UX Principles for Editorial & Content Platforms"></option>
+          <option value="Mastering Express Routing and Middleware Architecture"></option>
+          <option value="Optimizing Fullstack Performance and Core Web Vitals"></option>
+        </datalist>
+        <span class="form-helper">The main prominent title for your blog post slide.</span>
+      </div>
+
+      <!-- Field 3: slide-excerpt -->
+      <div class="form-group">
+        <label for="slideExcerpt" class="form-label">
+          Slide Excerpt / Summary <span class="required">*</span>
+        </label>
+        <textarea 
+          name="slideExcerpt" 
+          id="slideExcerpt" 
+          rows="4" 
+          class="form-textarea slide-excerpt" 
+          placeholder="Write a concise 2-3 sentence overview of this article..."
+          required
+        ></textarea>
+        <span class="form-helper">The descriptive summary text displayed inside the carousel slide.</span>
+      </div>
+
+      <!-- Field 4: author-name -->
+      <div class="form-group">
+        <label for="authorName" class="form-label">
+          Author Name <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          name="authorName" 
+          id="authorName" 
+          class="form-input author-name" 
+          placeholder="e.g. Sharan Raj" 
+          list="authorSuggestions"
+          required 
+          autocomplete="name"
+        />
+        <datalist id="authorSuggestions">
+          <option value="Sharan Raj"></option>
+          <option value="Editorial Team"></option>
+          <option value="Guest Writer"></option>
+          <option value="Code Contributor"></option>
+        </datalist>
+        <span class="form-helper">Your display name shown in the author metadata section.</span>
+      </div>
+
+      <!-- Notice: author-avatar & post-date handled automatically -->
+      <div class="form-notice-box">
+        <div class="notice-icon">&#9432;</div>
+        <div class="notice-content">
+          <p class="notice-title">Automated Metadata Fields</p>
+          <p class="notice-text">
+            <strong>Author Avatar</strong> (generated initials) and <strong>Publication Date</strong> are handled automatically by the system and do not require manual input.
+          </p>
+        </div>
+      </div>
+
+      <!-- Form Actions (Submit & Cancel) -->
+      <div class="form-actions">
+        <a href="/" class="btn btn-cancel">Cancel</a>
+        <button type="submit" class="btn btn-submit-post">
+          <span class="btn-icon">+</span>
+          <span class="btn-text">Publish Post</span>
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- You can include the footer partial here: <%- include("partials/footer.ejs") %> -->
