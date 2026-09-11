@@ -12,6 +12,15 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
+app.get("/post", (req, res) => {
+  res.render("post.ejs");
+});
+
+app.post("/post", (req, res) => {
+  const { slideTag, slideExcerpt, slideHeading, authorName } = req.body;
+  res.render("index.ejs", { slideTag, slideExcerpt, slideHeading, authorName });  
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

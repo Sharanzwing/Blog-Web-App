@@ -70,6 +70,20 @@
             </div>
           </article>
 
+          <!-- Slide 4 -->
+           <% if (typeof slideTag !== 'undefined' && typeof slideHeading !== 'undefined' && typeof slideExcerpt !== 'undefined' && typeof authorName !== 'undefined') { %>
+          <article class="carousel-slide">
+            <div class="slide-card">
+              <div class="slide-tag"><%= slideTag %></div>
+              <h3 class="slide-heading"><%= slideHeading %></h3>
+              <p class="slide-excerpt"><%= slideExcerpt %></p>
+              <div class="slide-meta">
+                <div class="author-avatar"><%= authorName.split(' ').map(name => name[0]).join('').toUpperCase() %></div>
+                <div class="author-details">
+                  <span class="author-name"><%= authorName %></span>
+                  <span class="post-date">Published on <%= new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
+                </div>  
+          <% } %>
         </div>
       </div>
 
