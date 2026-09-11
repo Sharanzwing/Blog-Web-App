@@ -25,10 +25,23 @@
                 Explore best practices for architecting clean REST APIs, templating dynamic EJS views, and managing state across scalable web services.
               </p>
               <div class="slide-meta">
-                <div class="author-avatar">SR</div>
-                <div class="author-details">
-                  <span class="author-name">Sharan Raj</span>
-                  <span class="post-date">Published on Sept 11, 2026</span>
+                <div class="author-info-group">
+                  <div class="author-avatar">SR</div>
+                  <div class="author-details">
+                    <span class="author-name">Sharan Raj</span>
+                    <span class="post-date">Published on Sept 11, 2026</span>
+                  </div>
+                </div>
+                <!-- Post Card Action Buttons (Update & Delete) -->
+                <div class="post-card-actions">
+                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
+                    <span class="btn-icon">&#9998;</span>
+                    <span class="btn-text">Update</span>
+                  </button>
+                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
+                    <span class="btn-icon">&#128465;</span>
+                    <span class="btn-text">Delete</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -43,10 +56,23 @@
                 How typography rhythm, negative space, and responsive card components combine to deliver a pleasant, frictionless reading experience.
               </p>
               <div class="slide-meta">
-                <div class="author-avatar">EV</div>
-                <div class="author-details">
-                  <span class="author-name">Editorial Team</span>
-                  <span class="post-date">Published on Sept 10, 2026</span>
+                <div class="author-info-group">
+                  <div class="author-avatar">EV</div>
+                  <div class="author-details">
+                    <span class="author-name">Editorial Team</span>
+                    <span class="post-date">Published on Sept 10, 2026</span>
+                  </div>
+                </div>
+                <!-- Post Card Action Buttons (Update & Delete) -->
+                <div class="post-card-actions">
+                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
+                    <span class="btn-icon">&#9998;</span>
+                    <span class="btn-text">Update</span>
+                  </button>
+                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
+                    <span class="btn-icon">&#128465;</span>
+                    <span class="btn-text">Delete</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -61,31 +87,59 @@
                 A hands-on guide to structuring Express.js controllers, handling dynamic URL parameters, and building robust CRUD operations.
               </p>
               <div class="slide-meta">
-                <div class="author-avatar">DEV</div>
-                <div class="author-details">
-                  <span class="author-name">Code Contributor</span>
-                  <span class="post-date">Published on Sept 08, 2026</span>
+                <div class="author-info-group">
+                  <div class="author-avatar">DEV</div>
+                  <div class="author-details">
+                    <span class="author-name">Code Contributor</span>
+                    <span class="post-date">Published on Sept 08, 2026</span>
+                  </div>
+                </div>
+                <!-- Post Card Action Buttons (Update & Delete) -->
+                <div class="post-card-actions">
+                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
+                    <span class="btn-icon">&#9998;</span>
+                    <span class="btn-text">Update</span>
+                  </button>
+                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
+                    <span class="btn-icon">&#128465;</span>
+                    <span class="btn-text">Delete</span>
+                  </button>
                 </div>
               </div>
             </div>
           </article>
 
-          <!-- Slide 4 -->
-           <% if (typeof slideTag !== 'undefined' && typeof slideHeading !== 'undefined' && typeof slideExcerpt !== 'undefined' && typeof authorName !== 'undefined') { %>
+          <!-- Slide 4: Dynamically added post -->
+          <% if (typeof slideTag !== 'undefined' && typeof slideHeading !== 'undefined' && typeof slideExcerpt !== 'undefined' && typeof authorName !== 'undefined') { %>
           <article class="carousel-slide">
             <div class="slide-card">
               <div class="slide-tag"><%= slideTag %></div>
               <h3 class="slide-heading"><%= slideHeading %></h3>
               <p class="slide-excerpt"><%= slideExcerpt %></p>
               <div class="slide-meta">
-                <div class="author-avatar"><%= authorName.split(' ').map(name => name[0]).join('').toUpperCase() %></div>
-                <div class="author-details">
-                  <span class="author-name"><%= authorName %></span>
-                  <span class="post-date">Published on <%= new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
-                </div>        
+                <div class="author-info-group">
+                  <div class="author-avatar"><%= authorName.trim().split(/\s+/).map(name => name[0]).join('').toUpperCase() %></div>
+                  <div class="author-details">
+                    <span class="author-name"><%= authorName %></span>
+                    <span class="post-date">Published on <%= new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
+                  </div>
+                </div>
+                <!-- Post Card Action Buttons (Update & Delete) -->
+                <div class="post-card-actions">
+                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
+                    <span class="btn-icon">&#9998;</span>
+                    <span class="btn-text">Update</span>
+                  </button>
+                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
+                    <span class="btn-icon">&#128465;</span>
+                    <span class="btn-text">Delete</span>
+                  </button>
+                </div>
               </div>
             </div>
+          </article>
           <% } %>
+
         </div>
       </div>
 
@@ -97,31 +151,22 @@
       <button type="button" class="carousel-dot active" aria-label="Slide 1"></button>
       <button type="button" class="carousel-dot" aria-label="Slide 2"></button>
       <button type="button" class="carousel-dot" aria-label="Slide 3"></button>
-
+      <% if (typeof slideTag !== 'undefined') { %>
+      <button type="button" class="carousel-dot" aria-label="Slide 4"></button>
+      <% } %>
     </div>
   </div>
 
-  <!-- Bottom Part: 3 Action Buttons (Post, Update, Delete) -->
+  <!-- Bottom Part: Action Button (Post) -->
   <div class="bottom-action-bar">
     <div class="action-bar-inner">
       <!-- Post Button (Create) -->
       <a href="/post" class="btn btn-post" id="btnPost">
         <span class="btn-icon">+</span>
-        <span class="btn-text">Post</span>
+        <span class="btn-text">Post New Story</span>
       </a>
-
-      <!-- Update Button (Update/Edit) -->
-      <button type="button" class="btn btn-update" id="btnUpdate">
-        <span class="btn-icon">&#9998;</span>
-        <span class="btn-text">Update</span>
-      </button>
-
-      <!-- Delete Button (Delete/Remove) -->
-      <button type="button" class="btn btn-delete" id="btnDelete">
-        <span class="btn-icon">&#128465;</span>
-        <span class="btn-text">Delete</span>
-      </button>
     </div>
   </div>
 </section>
-<%- include("partials/footer.ejs") %> 
+
+<%- include("partials/footer.ejs") %>

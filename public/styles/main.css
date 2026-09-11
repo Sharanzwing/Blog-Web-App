@@ -286,10 +286,18 @@ button {
 .slide-meta {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-top: 0.75rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border-subtle);
+}
+
+.author-info-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
 }
 
 .author-avatar {
@@ -319,6 +327,71 @@ button {
 .post-date {
   font-size: 0.78rem;
   color: var(--text-muted);
+}
+
+/* Post Card Actions (Update & Delete) */
+.post-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.btn-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.42rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-card-action .btn-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* 1. Card Update Button */
+.btn-card-update {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.btn-card-update:hover {
+  background: linear-gradient(135deg, #fbbf24, var(--accent-amber));
+  color: #ffffff;
+  border-color: var(--accent-amber);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.btn-card-update:active {
+  transform: translateY(0);
+}
+
+/* 2. Card Delete Button */
+.btn-card-delete {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.btn-card-delete:hover {
+  background: linear-gradient(135deg, #f87171, var(--accent-rose));
+  color: #ffffff;
+  border-color: var(--accent-rose);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-card-delete:active {
+  transform: translateY(0);
 }
 
 /* Nav Buttons */

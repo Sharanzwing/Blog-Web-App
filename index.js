@@ -21,13 +21,8 @@ app.post("/post", (req, res) => {
   res.render("index.ejs", { slideTag, slideExcerpt, slideHeading, authorName });  
 });
 
-app.patch("/post", (req, res) => {
-  const { slideTag, slideExcerpt, slideHeading, authorName } = req.body;
-  res.render("index.ejs", { slideTag, slideExcerpt, slideHeading, authorName });
-});
-
-app.delete("/post", (req, res) => {
-  res.render("index.ejs");
+app.get("/update", (req, res) => {
+  app.render("index.ejs");
 });
 
 app.listen(3000, () => {
