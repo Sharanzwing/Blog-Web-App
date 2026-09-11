@@ -1,15 +1,14 @@
 import express from "express";
-import bodyParser from "body-parser";
-import ejs from "ejs";
+import methodOverride from "method-override";
 
 const app = express();
 const port = 3000;
 let submittedData = [];
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { submittedData : submittedData });
@@ -22,7 +21,7 @@ app.get("/post", (req, res) => {
 app.post("/post", (req, res) => {
   const { slideTag, slideExcerpt, slideHeading, authorName } = req.body;
   submittedData.push({ slideTag : slideTag, slideExcerpt : slideExcerpt, slideHeading : slideHeading, authorName : authorName });
-  res.render("index.ejs", { submittedData : submittedData });  
+  res.redirect("/");  
 });
 
 app.get("/edit/:id", (req, res) => {
@@ -39,14 +38,24 @@ app.get("/edit/:id", (req, res) => {
   }
 });
 
-app.post("/edit/:id", (req, res) => {
+app.patch("/edit/:id", (req, res) => {
   const postId = req.params.id;
 
-  submittedData[postId].slideTag = req.body.slideTag;
-  submittedData[postId].slideExcerpt = req.body.slideExcerpt;
-  submittedData[postId].slideHeading = req.body.slideHeading;
-  submittedData[postId].authorName = req.body.authorName;
+  if(submittedData[postId]){
+    submittedData[postId].slideTag = req.body.slideTag;
+    submittedData[postId].slideExcerpt = req.body.slideExcerpt;
+    submittedData[postId].slideHeading = req.body.slideHeading;
+    submittedData[postId].authorName = req.body.authorName;
+  }
 
+  res.redirect("/");
+});
+
+app.delete("/delete/:id", (req, res) => {
+  const deleteId = req.params.id;
+  if(submittedData[deleteId]){
+    submittedData.splice(deleteId, 1);
+  }
   res.redirect("/");
 });
 

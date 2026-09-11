@@ -18,7 +18,7 @@
     </div>
 
     <!-- Post Creation Form -->
-    <form action="<%= locals.isEditing ? '/edit/' + postId : '/post'%>" method="POST" class="post-form" id="createPostForm">
+    <form action="<%= locals.isEditing ? '/edit/' + postId + '?_method=PATCH' : '/post'%>" method="POST" class="post-form" id="createPostForm">
       
       <!-- Field 1: slide-tag (Dropdown select) -->
       <div class="form-group">

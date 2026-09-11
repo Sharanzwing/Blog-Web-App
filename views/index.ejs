@@ -35,18 +35,18 @@
                       </div>
                       <!-- Post Card Action Buttons (Update & Delete) -->
                       <div class="post-card-actions">
-                        <a href="/edit/<%=index%>">
+                        <a href="/edit/<%= index %>">
                           <button type="button" class="btn-card-action btn-card-update" title="Update Story">
                             <span class="btn-icon">&#9998;</span>
                             <span class="btn-text">Update</span>
                           </button>
                         </a>
-                        <a href="/delete/<%= index %>">
-                          <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
+                        <form action="/delete/<%= index %>?_method=DELETE" method="POST" style="display:inline;">
+                          <button type="submit" class="btn-card-action btn-card-delete" title="Delete Story">
                             <span class="btn-icon">&#128465;</span>
                             <span class="btn-text">Delete</span>
                           </button>
-                        </a>
+                        </form>
                       </div>
                     </div>
                   </div>
