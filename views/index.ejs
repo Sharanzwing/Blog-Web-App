@@ -15,144 +15,66 @@
       
       <div class="carousel-track-wrapper">
         <div class="carousel-track">
-          
+
           <!-- Slide 1 (Sample item / Template for EJS dynamic rendering) -->
-          <article class="carousel-slide">
-            <div class="slide-card">
-              <div class="slide-tag">TECHNOLOGY &bull; 5 min read</div>
-              <h3 class="slide-heading">Building Scalable Web Applications with Modern Node.js</h3>
-              <p class="slide-excerpt">
-                Explore best practices for architecting clean REST APIs, templating dynamic EJS views, and managing state across scalable web services.
-              </p>
-              <div class="slide-meta">
-                <div class="author-info-group">
-                  <div class="author-avatar">SR</div>
-                  <div class="author-details">
-                    <span class="author-name">Sharan Raj</span>
-                    <span class="post-date">Published on Sept 11, 2026</span>
+          <% if (submittedData.length > 0){ %>
+            <% submittedData.forEach((post, index) => { %>
+              <% if (typeof post.slideTag !== 'undefined' && typeof post.slideHeading !== 'undefined' && typeof post.slideExcerpt !== 'undefined' && typeof post.authorName !== 'undefined') { %>
+                <article class="carousel-slide">
+                  <div class="slide-card">
+                    <div class="slide-tag"><%= post.slideTag %></div>
+                    <h3 class="slide-heading"><%= post.slideHeading %></h3>
+                    <p class="slide-excerpt"><%= post.slideExcerpt %></p>
+                    <div class="slide-meta">
+                      <div class="author-info-group">
+                        <div class="author-avatar"><%= post.authorName.trim().split(/\s+/).map(name => name[0]).join('').toUpperCase() %></div>
+                        <div class="author-details">
+                          <span class="author-name"><%= post.authorName %></span>
+                          <span class="post-date">Published on <%= new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
+                        </div>
+                      </div>
+                      <!-- Post Card Action Buttons (Update & Delete) -->
+                      <div class="post-card-actions">
+                        <a href="/edit/<%=index%>">
+                          <button type="button" class="btn-card-action btn-card-update" title="Update Story">
+                            <span class="btn-icon">&#9998;</span>
+                            <span class="btn-text">Update</span>
+                          </button>
+                        </a>
+                        <a href="/delete/<%= index %>">
+                          <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
+                            <span class="btn-icon">&#128465;</span>
+                            <span class="btn-text">Delete</span>
+                          </button>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <!-- Post Card Action Buttons (Update & Delete) -->
-                <div class="post-card-actions">
-                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
-                    <span class="btn-icon">&#9998;</span>
-                    <span class="btn-text">Update</span>
-                  </button>
-                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
-                    <span class="btn-icon">&#128465;</span>
-                    <span class="btn-text">Delete</span>
-                  </button>
-                </div>
+                </article>
+              <% } %>
+            <% }); %>
+          <% } else {%>
+            <article class="carousel-slide">
+              <div class="slide-card">
+                <div class="slide-tag"></div>
+                <h3 class="slide-heading" style="text-align: center;">NO POSTS YET!!</h3>
+                <p class="slide-excerpt"></p>
               </div>
-            </div>
-          </article>
-
-          <!-- Slide 2 -->
-          <article class="carousel-slide">
-            <div class="slide-card">
-              <div class="slide-tag">DESIGN SYSTEMS &bull; 4 min read</div>
-              <h3 class="slide-heading">Modern UI/UX Principles for Editorial & Content Platforms</h3>
-              <p class="slide-excerpt">
-                How typography rhythm, negative space, and responsive card components combine to deliver a pleasant, frictionless reading experience.
-              </p>
-              <div class="slide-meta">
-                <div class="author-info-group">
-                  <div class="author-avatar">EV</div>
-                  <div class="author-details">
-                    <span class="author-name">Editorial Team</span>
-                    <span class="post-date">Published on Sept 10, 2026</span>
-                  </div>
-                </div>
-                <!-- Post Card Action Buttons (Update & Delete) -->
-                <div class="post-card-actions">
-                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
-                    <span class="btn-icon">&#9998;</span>
-                    <span class="btn-text">Update</span>
-                  </button>
-                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
-                    <span class="btn-icon">&#128465;</span>
-                    <span class="btn-text">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Slide 3 -->
-          <article class="carousel-slide">
-            <div class="slide-card">
-              <div class="slide-tag">DEVELOPMENT &bull; 6 min read</div>
-              <h3 class="slide-heading">Mastering Express Routing and Middleware Architecture</h3>
-              <p class="slide-excerpt">
-                A hands-on guide to structuring Express.js controllers, handling dynamic URL parameters, and building robust CRUD operations.
-              </p>
-              <div class="slide-meta">
-                <div class="author-info-group">
-                  <div class="author-avatar">DEV</div>
-                  <div class="author-details">
-                    <span class="author-name">Code Contributor</span>
-                    <span class="post-date">Published on Sept 08, 2026</span>
-                  </div>
-                </div>
-                <!-- Post Card Action Buttons (Update & Delete) -->
-                <div class="post-card-actions">
-                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
-                    <span class="btn-icon">&#9998;</span>
-                    <span class="btn-text">Update</span>
-                  </button>
-                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
-                    <span class="btn-icon">&#128465;</span>
-                    <span class="btn-text">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Slide 4: Dynamically added post -->
-          <% if (typeof slideTag !== 'undefined' && typeof slideHeading !== 'undefined' && typeof slideExcerpt !== 'undefined' && typeof authorName !== 'undefined') { %>
-          <article class="carousel-slide">
-            <div class="slide-card">
-              <div class="slide-tag"><%= slideTag %></div>
-              <h3 class="slide-heading"><%= slideHeading %></h3>
-              <p class="slide-excerpt"><%= slideExcerpt %></p>
-              <div class="slide-meta">
-                <div class="author-info-group">
-                  <div class="author-avatar"><%= authorName.trim().split(/\s+/).map(name => name[0]).join('').toUpperCase() %></div>
-                  <div class="author-details">
-                    <span class="author-name"><%= authorName %></span>
-                    <span class="post-date">Published on <%= new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
-                  </div>
-                </div>
-                <!-- Post Card Action Buttons (Update & Delete) -->
-                <div class="post-card-actions">
-                  <button type="button" class="btn-card-action btn-card-update" title="Update Story">
-                    <span class="btn-icon">&#9998;</span>
-                    <span class="btn-text">Update</span>
-                  </button>
-                  <button type="button" class="btn-card-action btn-card-delete" title="Delete Story">
-                    <span class="btn-icon">&#128465;</span>
-                    <span class="btn-text">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </article>
+            </article>
           <% } %>
-
         </div>
       </div>
-
       <button type="button" class="carousel-btn next" aria-label="Next Slide">&#10095;</button>
     </div>
 
     <!-- Carousel Pagination Indicators (Dots) -->
     <div class="carousel-indicators">
+      <% if (locals.submittedData && submittedData.length > 0) { %>
+        <% submittedData.forEach((post, index) => { %>
+          <button type="button" class="carousel-dot" aria-label="Slide <%= index + 2 %>"></button>
+        <% }); %>
+      <% } else {%>
       <button type="button" class="carousel-dot active" aria-label="Slide 1"></button>
-      <button type="button" class="carousel-dot" aria-label="Slide 2"></button>
-      <button type="button" class="carousel-dot" aria-label="Slide 3"></button>
-      <% if (typeof slideTag !== 'undefined') { %>
-      <button type="button" class="carousel-dot" aria-label="Slide 4"></button>
       <% } %>
     </div>
   </div>
