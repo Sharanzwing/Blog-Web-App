@@ -13,12 +13,12 @@
 
     <!-- Form Card Header -->
     <div class="form-header">
-      <h1 class="form-title">Create a New Story</h1>
+      <h1 class="form-title"><%= locals.isEditing ? "Edit Story" : "Create a New Story" %></h1>
       <p class="form-subtitle">Fill in the fields below to publish a new article card to the showcase carousel.</p>
     </div>
 
     <!-- Post Creation Form -->
-    <form action="/post" method="POST" class="post-form" id="createPostForm">
+    <form action="<%= locals.isEditing ? '/edit/' + postId : '/post'%>" method="POST" class="post-form" id="createPostForm">
       
       <!-- Field 1: slide-tag (Dropdown select) -->
       <div class="form-group">
@@ -27,13 +27,13 @@
         </label>
         <div class="select-wrapper">
           <select name="slideTag" id="slideTag" class="form-select slide-tag" required>
-            <option value="" disabled selected>Select a topic category...</option>
-            <option value="TECHNOLOGY &bull; 5 min read">Technology (5 min read)</option>
-            <option value="DESIGN SYSTEMS &bull; 4 min read">Design Systems (4 min read)</option>
-            <option value="DEVELOPMENT &bull; 6 min read">Development (6 min read)</option>
-            <option value="AI & MACHINE LEARNING &bull; 5 min read">AI & Machine Learning (5 min read)</option>
-            <option value="CLOUD & ARCHITECTURE &bull; 7 min read">Cloud & Architecture (7 min read)</option>
-            <option value="EDITORIAL & OPINION &bull; 3 min read">Editorial & Opinion (3 min read)</option>
+            <option value="" disabled <%= !locals.post ? 'selected' : '' %>>Select a topic category...</option>
+            <option value="TECHNOLOGY • 5 min read" <%= locals.post && post.slideTag.includes('TECHNOLOGY') ? 'selected' : '' %>>Technology (5 min read)</option>
+            <option value="DESIGN SYSTEMS • 4 min read" <%= locals.post && post.slideTag.includes('DESIGN SYSTEMS') ? 'selected' : '' %>>Design Systems (4 min read)</option>
+            <option value="DEVELOPMENT • 6 min read" <%= locals.post && post.slideTag.includes('DEVELOPMENT') ? 'selected' : '' %>>Development (6 min read)</option>
+            <option value="AI & MACHINE LEARNING • 5 min read" <%= locals.post && post.slideTag.includes('AI') ? 'selected' : '' %>>AI & Machine Learning (5 min read)</option>
+            <option value="CLOUD & ARCHITECTURE • 7 min read" <%= locals.post && post.slideTag.includes('CLOUD') ? 'selected' : '' %>>Cloud & Architecture (7 min read)</option>
+            <option value="EDITORIAL & OPINION • 3 min read" <%= locals.post && post.slideTag.includes('EDITORIAL') ? 'selected' : '' %>>Editorial & Opinion (3 min read)</option>
           </select>
         </div>
         <span class="form-helper">Specifies the category badge displayed at the top of the slide card.</span>
@@ -48,11 +48,10 @@
           type="text" 
           name="slideHeading" 
           id="slideHeading" 
-          class="form-input slide-heading" 
-          placeholder="e.g. Mastering Asynchronous JavaScript and Event Loops" 
           list="headingSuggestions"
+          class="form-input slide-heading" 
+          value="<%= locals.post ? post.slideHeading : '' %>"
           required 
-          autocomplete="off"
         />
         <datalist id="headingSuggestions">
           <option value="Building Scalable Web Applications with Modern Node.js"></option>
@@ -73,9 +72,9 @@
           id="slideExcerpt" 
           rows="4" 
           class="form-textarea slide-excerpt" 
-          placeholder="Write a concise 2-3 sentence overview of this article..."
           required
-        ></textarea>
+
+        ><%= locals.post ? post.slideExcerpt : '' %></textarea>
         <span class="form-helper">The descriptive summary text displayed inside the carousel slide.</span>
       </div>
 
@@ -88,11 +87,10 @@
           type="text" 
           name="authorName" 
           id="authorName" 
-          class="form-input author-name" 
-          placeholder="e.g. Sharan Raj" 
           list="authorSuggestions"
+          class="form-input author-name" 
+          value="<%= locals.post ? post.authorName : '' %>"
           required 
-          autocomplete="name"
         />
         <datalist id="authorSuggestions">
           <option value="Sharan Raj"></option>
@@ -118,9 +116,9 @@
       <div class="form-actions">
         <a href="/" class="btn btn-cancel">Cancel</a>
         <button type="submit" class="btn btn-submit-post">
-          <span class="btn-icon">+</span>
-          <span class="btn-text">Publish Post</span>
-        </button>
+        <span class="btn-icon"><%= locals.isEditing ? '✎' : '+' %></span>
+        <span class="btn-text"><%= locals.isEditing ? 'Save Changes' : 'Publish Post' %></span>
+      </button>
       </div>
 
     </form>

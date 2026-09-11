@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/post", (req, res) => {
-  res.render("post.ejs");
+  res.render("post.ejs", { isEditing: false, post: null });
 });
 
 app.post("/post", (req, res) => {
@@ -28,7 +28,15 @@ app.post("/post", (req, res) => {
 app.get("/edit/:id", (req, res) => {
   const postId = req.params.id;
   const postToEdit = submittedData[postId];
-  res.render("post.ejs", { postToEdit, postId, submittedData });
+  if (postToEdit) {
+    res.render("post.ejs", {
+      post: postToEdit,
+      postId: postId,
+      isEditing: true
+    });
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.post("/edit/:id", (req, res) => {
