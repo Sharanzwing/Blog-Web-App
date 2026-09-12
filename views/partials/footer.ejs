@@ -21,7 +21,7 @@
   <!-- Splide Slider JS Library -->
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
-  <!-- Carousel Controller matching tricks-menu-slider mechanics -->
+  <!-- Buttery Smooth Splide Carousel Controller -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const splideElement = document.querySelector('.splide');
@@ -38,37 +38,44 @@
 
       // Check if Splide library loaded successfully
       if (typeof Splide !== 'undefined' && totalSlidesCount > 0) {
-        // Multi-card center-focus carousel configuration
         const isLoopable = totalSlidesCount >= 3;
+        
+        // Premium 60fps/120fps buttery glide configuration
         const splide = new Splide('.splide', {
           type: isLoopable ? 'loop' : 'slide',
           perPage: 3,
           perMove: 1,
           focus: 'center',
           trimSpace: false,
-          gap: '2rem',
-          padding: { left: '6%', right: '6%' },
+          gap: '2.25rem',
+          padding: { left: '8%', right: '8%' },
           arrows: false,
           pagination: false,
           drag: true,
-          flickPower: 500,
-          speed: 600,
-          easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+          
+          /* Butter-smooth physics & easing */
+          speed: 750,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          updateOnMove: true,        /* Smoothly scale active card DURING slide motion, not after */
+          waitForTransition: false,  /* Allow seamless rapid clicking without stalling */
+          flickPower: 600,
+          flickMaxPages: 1,
+
           breakpoints: {
             1100: {
               perPage: 2,
               gap: '1.5rem',
-              padding: { left: '4%', right: '4%' }
+              padding: { left: '6%', right: '6%' }
             },
             720: {
               perPage: 1,
               gap: '1rem',
-              padding: { left: '8%', right: '8%' }
+              padding: { left: '10%', right: '10%' }
             }
           }
         });
 
-        // Update custom counter on slide movement
+        // Update custom counter smoothly in real-time as slide moves
         splide.on('move', (newIndex) => {
           if (counterCurrent) {
             const displayIndex = (newIndex % totalSlidesCount) + 1;
@@ -78,7 +85,7 @@
 
         splide.mount();
 
-        // Wire bespoke circular arrow buttons
+        // Bespoke circular control buttons with smooth debounced triggers
         const prevBtn = document.querySelector('.prev-splide');
         const nextBtn = document.querySelector('.next-splide');
 
@@ -96,22 +103,21 @@
           });
         }
       } else {
-        // Vanilla CSS fallback for navigation buttons if offline
+        // Fallback smooth scroll
         const track = document.querySelector('.splide__list');
         const prevBtn = document.querySelector('.prev-splide');
         const nextBtn = document.querySelector('.next-splide');
-        let currentScroll = 0;
 
         if (prevBtn && track) {
           prevBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            track.scrollBy({ left: -360, behavior: 'smooth' });
+            track.scrollBy({ left: -380, behavior: 'smooth' });
           });
         }
         if (nextBtn && track) {
           nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            track.scrollBy({ left: 360, behavior: 'smooth' });
+            track.scrollBy({ left: 380, behavior: 'smooth' });
           });
         }
       }

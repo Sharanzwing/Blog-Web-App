@@ -253,6 +253,7 @@ button {
   width: 100%;
   position: relative;
   margin: 1rem 0;
+  contain: layout;
 }
 
 .splide {
@@ -264,26 +265,33 @@ button {
 /* Key mechanism from tricks-menu-slider: track overflow visible allows peek */
 .splide__track {
   overflow: visible !important;
+  touch-action: pan-y;
 }
 
 .splide__list {
   display: flex;
   align-items: stretch;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .splide__slide {
   box-sizing: border-box;
-  /* Smooth scaling for center-focused multi-card effect */
-  transform: scale(0.92);
-  opacity: 0.45;
-  transition: transform var(--transition-editorial), opacity var(--transition-editorial), filter var(--transition-editorial);
-  filter: blur(0.5px);
+  /* Buttery smooth synchronized scaling without filter blur jank */
+  transform: scale(0.91);
+  opacity: 0.42;
+  transition: transform 750ms cubic-bezier(0.16, 1, 0.3, 1), opacity 750ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
 .splide__slide.is-active {
   transform: scale(1);
   opacity: 1;
-  filter: none;
   z-index: 10;
 }
 
