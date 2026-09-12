@@ -1,93 +1,161 @@
 <%- include("partials/header.ejs") %> 
 
-<section class="blog-hero-section">
-  <!-- Middle Part: Carousel displaying posted items as slides -->
-  <div class="carousel-container">
-    <div class="carousel-header">
-      <div class="carousel-badge">Editorial Showcase</div>
-      <h2 class="carousel-title">Posted Stories & Articles</h2>
-      <p class="carousel-subtitle">Swipe or use controls to browse through published items.</p>
+<section class="editorial-hero-section">
+  <!-- Minimalist Editorial Section Intro -->
+  <div class="hero-intro">
+    <div class="hero-kicker">
+      <span class="kicker-bullet"></span>
+      <span>ISSUE // 2026 &bull; CURATED WRITING</span>
     </div>
+    <h1 class="hero-headline">Ideas, Craft &amp; Software Architecture.</h1>
+    <p class="hero-description">
+      An editorial showcase exploring interface design, backend primitives, and human-centered engineering.
+    </p>
+  </div>
 
-    <!-- Carousel Component Viewport -->
-    <div class="carousel-viewport">
-      <button type="button" class="carousel-btn prev" aria-label="Previous Slide">&#10094;</button>
-      
-      <div class="carousel-track-wrapper">
-        <div class="carousel-track">
+  <!-- Multi-Card Center-Focus Carousel (Splide.js Architecture) -->
+  <div class="slider-container">
+    <div class="splide" aria-label="Editorial Stories Slider">
+      <div class="splide__track">
+        <div class="splide__list">
 
-          <!-- Slide 1 (Sample item / Template for EJS dynamic rendering) -->
-          <% if (submittedData.length > 0){ %>
+          <!-- Slide 1: Editorial Curated Post -->
+          <div class="splide__slide">
+            <article class="editorial-card">
+              <div class="card-top-bar">
+                <span class="card-index">// 01</span>
+                <span class="card-tag">DESIGN SYSTEMS &bull; 4 MIN</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Modern UI/UX Principles for Editorial &amp; Content Platforms</h3>
+                <p class="card-excerpt">
+                  How typography rhythm, intentional white space, and responsive card components combine to deliver a pleasant, frictionless reading experience.
+                </p>
+              </div>
+              <div class="card-footer">
+                <div class="card-author">
+                  <div class="author-monogram">EV</div>
+                  <div class="author-info">
+                    <span class="author-name">Editorial Team</span>
+                    <span class="author-date">Sept 10, 2026</span>
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <span class="card-badge-static">FEATURED</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Slide 2: Editorial Curated Post -->
+          <div class="splide__slide">
+            <article class="editorial-card">
+              <div class="card-top-bar">
+                <span class="card-index">// 02</span>
+                <span class="card-tag">ENGINEERING &bull; 6 MIN</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Mastering Express Routing and Middleware Architecture</h3>
+                <p class="card-excerpt">
+                  A hands-on guide to structuring Express.js controllers, handling dynamic URL parameters, and building robust RESTful CRUD operations.
+                </p>
+              </div>
+              <div class="card-footer">
+                <div class="card-author">
+                  <div class="author-monogram">DEV</div>
+                  <div class="author-info">
+                    <span class="author-name">Code Contributor</span>
+                    <span class="author-date">Sept 08, 2026</span>
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <span class="card-badge-static">ARCHIVE</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Dynamic User Submitted Posts -->
+          <% if (locals.submittedData && submittedData.length > 0) { %>
             <% submittedData.forEach((post, index) => { %>
-              <% if (typeof post.slideTag !== 'undefined' && typeof post.slideHeading !== 'undefined' && typeof post.slideExcerpt !== 'undefined' && typeof post.authorName !== 'undefined') { %>
-                <article class="carousel-slide">
-                  <div class="slide-card">
-                    <div class="slide-tag"><%= post.slideTag %></div>
-                    <h3 class="slide-heading"><%= post.slideHeading %></h3>
-                    <p class="slide-excerpt"><%= post.slideExcerpt %></p>
-                    <div class="slide-meta">
-                      <div class="author-info-group">
-                        <div class="author-avatar"><%= post.authorName.trim().split(/\s+/).map(name => name[0]).join('').toUpperCase() %></div>
-                        <div class="author-details">
-                          <span class="author-name"><%= post.authorName %></span>
-                          <span class="post-date">Published on <%= new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
-                        </div>
+              <div class="splide__slide">
+                <article class="editorial-card is-user-card">
+                  <div class="card-top-bar">
+                    <span class="card-index">// <%= String(index + 3).padStart(2, '0') %></span>
+                    <span class="card-tag"><%= post.slideTag || 'GENERAL' %></span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title"><%= post.slideHeading %></h3>
+                    <p class="card-excerpt"><%= post.slideExcerpt %></p>
+                  </div>
+                  <div class="card-footer">
+                    <div class="card-author">
+                      <div class="author-monogram">
+                        <%= (post.authorName || 'SR').trim().split(/\s+/).map(n => n[0]).join('').toUpperCase() %>
                       </div>
-                      <!-- Post Card Action Buttons (Update & Delete) -->
-                      <div class="post-card-actions">
-                        <a href="/edit/<%= index %>">
-                          <button type="button" class="btn-card-action btn-card-update" title="Update Story">
-                            <span class="btn-icon">&#9998;</span>
-                            <span class="btn-text">Update</span>
-                          </button>
-                        </a>
-                        <form action="/delete/<%= index %>?_method=DELETE" method="POST" style="display:inline;">
-                          <button type="submit" class="btn-card-action btn-card-delete" title="Delete Story">
-                            <span class="btn-icon">&#128465;</span>
-                            <span class="btn-text">Delete</span>
-                          </button>
-                        </form>
+                      <div class="author-info">
+                        <span class="author-name"><%= post.authorName %></span>
+                        <span class="author-date">Published Post</span>
                       </div>
+                    </div>
+                    <!-- Card Action Buttons (Update & Delete) -->
+                    <div class="card-actions">
+                      <a href="/edit/<%= index %>" class="action-btn action-edit" title="Update Story">
+                        <span class="action-icon">&#9998;</span>
+                        <span class="action-text">Edit</span>
+                      </a>
+                      <form action="/delete/<%= index %>?_method=DELETE" method="POST" style="display: inline;">
+                        <button type="submit" class="action-btn action-delete" title="Delete Story">
+                          <span class="action-icon">&#128465;</span>
+                          <span class="action-text">Delete</span>
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </article>
-              <% } %>
-            <% }); %>
-          <% } else {%>
-            <article class="carousel-slide">
-              <div class="slide-card">
-                <div class="slide-tag"></div>
-                <h3 class="slide-heading" style="text-align: center;">NO POSTS YET!!</h3>
-                <p class="slide-excerpt"></p>
               </div>
-            </article>
+            <% }); %>
           <% } %>
+
         </div>
       </div>
-      <button type="button" class="carousel-btn next" aria-label="Next Slide">&#10095;</button>
     </div>
 
-    <!-- Carousel Pagination Indicators (Dots) -->
-    <div class="carousel-indicators">
-      <% if (locals.submittedData && submittedData.length > 0) { %>
-        <% submittedData.forEach((post, index) => { %>
-          <button type="button" class="carousel-dot" aria-label="Slide <%= index + 2 %>"></button>
-        <% }); %>
-      <% } else {%>
-      <button type="button" class="carousel-dot active" aria-label="Slide 1"></button>
-      <% } %>
+    <!-- Bespoke Slider Controls matching tricks-menu-slider -->
+    <div class="slider-controls-wrap">
+      <div class="slider-controls">
+        <button type="button" class="control prev-splide" aria-label="Previous Slide">
+          <div class="control-arrow">
+            <svg viewBox="0 0 24 18" width="20" height="15">
+              <path fill="currentColor" d="M23.999,8H5.481c5.009-2.91,6.349-7.311,6.416-7.548L9.976-0.102C9.9,0.156,8.03,6.213-0.073,8.024L0.146,9l-0.218,0.976C8.03,11.787,9.9,17.844,9.976,18.101l1.922-0.554C11.83,17.31,10.49,12.91,5.481,10h18.518V8z"/>
+            </svg>
+          </div>
+        </button>
+
+        <div class="slider-counter">
+          <span class="current-slide">01</span>
+          <span class="counter-separator">/</span>
+          <span class="total-slides">03</span>
+        </div>
+
+        <button type="button" class="control next-splide" aria-label="Next Slide">
+          <div class="control-arrow is-flipped">
+            <svg viewBox="0 0 24 18" width="20" height="15" style="transform: rotate(180deg);">
+              <path fill="currentColor" d="M23.999,8H5.481c5.009-2.91,6.349-7.311,6.416-7.548L9.976-0.102C9.9,0.156,8.03,6.213-0.073,8.024L0.146,9l-0.218,0.976C8.03,11.787,9.9,17.844,9.976,18.101l1.922-0.554C11.83,17.31,10.49,12.91,5.481,10h18.518V8z"/>
+            </svg>
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Bottom Part: Action Button (Post) -->
-  <div class="bottom-action-bar">
-    <div class="action-bar-inner">
-      <!-- Post Button (Create) -->
-      <a href="/post" class="btn btn-post" id="btnPost">
-        <span class="btn-icon">+</span>
-        <span class="btn-text">Post New Story</span>
-      </a>
-    </div>
+  <!-- Bottom Action Bar (Create Story CTA) -->
+  <div class="editorial-bottom-bar">
+    <a href="/post" class="btn-editorial-post" id="btnPost">
+      <span class="btn-dot"></span>
+      <span class="btn-text">Publish New Story</span>
+      <span class="btn-arrow">&rarr;</span>
+    </a>
   </div>
 </section>
 
