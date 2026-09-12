@@ -32,22 +32,99 @@
       id="createPostForm"
     >
       
-      <!-- Field 1: slide-tag (Category Dropdown) -->
+      <!-- Field 1: slide-tag (Modern Custom Styled Dropdown) -->
       <div class="form-group">
-        <label for="slideTag" class="form-label">
+        <label class="form-label" id="categoryLabel">
           Category &bull; Topic Tag <span class="required">*</span>
         </label>
-        <div class="select-wrapper">
-          <select name="slideTag" id="slideTag" class="form-select" required>
-            <option value="" disabled <%= !locals.post ? 'selected' : '' %>>Select a topic category...</option>
-            <option value="DESIGN SYSTEMS &bull; 4 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('DESIGN') ? 'selected' : '' %>>Design Systems (4 min read)</option>
-            <option value="ENGINEERING &bull; 6 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('ENGINEERING') ? 'selected' : '' %>>Engineering &amp; Architecture (6 min read)</option>
-            <option value="TECHNOLOGY &bull; 5 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('TECH') ? 'selected' : '' %>>Technology Trends (5 min read)</option>
-            <option value="AI &bull; 5 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('AI') ? 'selected' : '' %>>Artificial Intelligence (5 min read)</option>
-            <option value="CRAFT &bull; 3 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('CRAFT') ? 'selected' : '' %>>Craft &amp; Typography (3 min read)</option>
-            <option value="COLOPHON &bull; 2 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('COLOPHON') ? 'selected' : '' %>>Colophon &amp; Thoughts (2 min read)</option>
-          </select>
+
+        <!-- Hidden Native Select (Keeps HTML5 Form Validation & req.body.slideTag in sync) -->
+        <select name="slideTag" id="slideTag" class="native-select-hidden" required>
+          <option value="" disabled <%= !locals.post ? 'selected' : '' %>>Select a topic category...</option>
+          <option value="DESIGN SYSTEMS &bull; 4 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('DESIGN') ? 'selected' : '' %>>DESIGN SYSTEMS &bull; 4 MIN</option>
+          <option value="ENGINEERING &bull; 6 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('ENGINEERING') ? 'selected' : '' %>>ENGINEERING &bull; 6 MIN</option>
+          <option value="TECHNOLOGY &bull; 5 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('TECH') ? 'selected' : '' %>>TECHNOLOGY &bull; 5 MIN</option>
+          <option value="AI &bull; 5 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('AI') ? 'selected' : '' %>>AI &bull; 5 MIN</option>
+          <option value="CRAFT &bull; 3 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('CRAFT') ? 'selected' : '' %>>CRAFT &bull; 3 MIN</option>
+          <option value="COLOPHON &bull; 2 MIN" <%= locals.post && post.slideTag && post.slideTag.includes('COLOPHON') ? 'selected' : '' %>>COLOPHON &bull; 2 MIN</option>
+        </select>
+
+        <!-- Custom Styled Dropdown Component -->
+        <div class="custom-select-container" id="customSelectContainer">
+          <button 
+            type="button" 
+            class="custom-select-trigger <%= locals.post && post.slideTag ? 'has-value' : '' %>" 
+            id="customSelectTrigger" 
+            aria-haspopup="listbox" 
+            aria-expanded="false"
+            aria-labelledby="categoryLabel"
+          >
+            <span class="trigger-label" id="triggerLabel">
+              <%= locals.post && post.slideTag ? post.slideTag : "Select a topic category..." %>
+            </span>
+            <span class="trigger-chevron">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 6 8 10 12 6"></polyline>
+              </svg>
+            </span>
+          </button>
+
+          <!-- Modern Expanded Floating Menu -->
+          <div class="custom-select-dropdown" id="customSelectDropdown" role="listbox">
+            <div class="dropdown-header">
+              <span class="dropdown-kicker">// SELECT TOPIC CLASSIFICATION</span>
+            </div>
+
+            <div class="custom-option <%= locals.post && post.slideTag && post.slideTag.includes('DESIGN') ? 'is-selected' : '' %>" data-value="DESIGN SYSTEMS &bull; 4 MIN" role="option">
+              <div class="option-main">
+                <span class="option-title">Design Systems</span>
+                <span class="option-badge">4 MIN READ</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option <%= locals.post && post.slideTag && post.slideTag.includes('ENGINEERING') ? 'is-selected' : '' %>" data-value="ENGINEERING &bull; 6 MIN" role="option">
+              <div class="option-main">
+                <span class="option-title">Engineering &amp; Architecture</span>
+                <span class="option-badge">6 MIN READ</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option <%= locals.post && post.slideTag && post.slideTag.includes('TECH') ? 'is-selected' : '' %>" data-value="TECHNOLOGY &bull; 5 MIN" role="option">
+              <div class="option-main">
+                <span class="option-title">Technology Trends</span>
+                <span class="option-badge">5 MIN READ</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option <%= locals.post && post.slideTag && post.slideTag.includes('AI') ? 'is-selected' : '' %>" data-value="AI &bull; 5 MIN" role="option">
+              <div class="option-main">
+                <span class="option-title">Artificial Intelligence</span>
+                <span class="option-badge">5 MIN READ</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option <%= locals.post && post.slideTag && post.slideTag.includes('CRAFT') ? 'is-selected' : '' %>" data-value="CRAFT &bull; 3 MIN" role="option">
+              <div class="option-main">
+                <span class="option-title">Craft &amp; Typography</span>
+                <span class="option-badge">3 MIN READ</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option <%= locals.post && post.slideTag && post.slideTag.includes('COLOPHON') ? 'is-selected' : '' %>" data-value="COLOPHON &bull; 2 MIN" role="option">
+              <div class="option-main">
+                <span class="option-title">Colophon &amp; Thoughts</span>
+                <span class="option-badge">2 MIN READ</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+          </div>
         </div>
+
         <span class="form-helper">Category classification displayed on the card header.</span>
       </div>
 
@@ -141,5 +218,67 @@
 
   </div>
 </section>
+
+<!-- Custom Dropdown Controller Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('customSelectContainer');
+    const trigger = document.getElementById('customSelectTrigger');
+    const dropdown = document.getElementById('customSelectDropdown');
+    const triggerLabel = document.getElementById('triggerLabel');
+    const nativeSelect = document.getElementById('slideTag');
+
+    if (!container || !trigger || !dropdown || !nativeSelect) return;
+
+    const options = dropdown.querySelectorAll('.custom-option');
+
+    // Toggle dropdown expansion
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = container.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Handle option selection
+    options.forEach((opt) => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const value = opt.getAttribute('data-value');
+
+        // Update native select for backend Express submission
+        nativeSelect.value = value;
+
+        // Update trigger UI
+        triggerLabel.textContent = value;
+        trigger.classList.add('has-value');
+
+        // Mark active item
+        options.forEach((o) => o.classList.remove('is-selected'));
+        opt.classList.add('is-selected');
+
+        // Close dropdown
+        container.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close when clicking anywhere outside
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target)) {
+        container.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        container.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
 
 <%- include("partials/footer.ejs") %>

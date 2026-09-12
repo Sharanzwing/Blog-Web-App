@@ -748,33 +748,169 @@ button {
   line-height: 1.65;
 }
 
-.select-wrapper {
+/* Hidden native select for HTML5 form submission & validation */
+.native-select-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Custom Dropdown Trigger Container */
+.custom-select-container {
   position: relative;
   width: 100%;
 }
 
-.select-wrapper::after {
-  content: '↓';
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+.custom-select-trigger {
+  width: 100%;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.custom-select-trigger.has-value {
+  color: var(--text-hero);
+}
+
+.custom-select-trigger:hover,
+.custom-select-container.is-open .custom-select-trigger {
+  border-color: var(--accent-brass);
+  background-color: var(--bg-surface-elevated);
+}
+
+.custom-select-container.is-open .custom-select-trigger {
+  box-shadow: 0 0 0 3px var(--accent-brass-dim);
+}
+
+.trigger-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1), color 0.2s ease;
+}
+
+.custom-select-container.is-open .trigger-chevron {
+  transform: rotate(180deg);
+  color: var(--accent-brass);
+}
+
+/* Modern Expanded Floating Dropdown Menu */
+.custom-select-dropdown {
   position: absolute;
-  right: 1.15rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 150;
+  background: #141720;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
   pointer-events: none;
 }
 
-.form-select {
-  appearance: none;
-  -webkit-appearance: none;
-  padding-right: 2.5rem;
-  cursor: pointer;
+.custom-select-container.is-open .custom-select-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
-.form-select option {
-  background: var(--bg-surface);
+.dropdown-header {
+  padding: 0.45rem 0.65rem 0.35rem;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 0.25rem;
+}
+
+.dropdown-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--accent-brass);
+  text-transform: uppercase;
+}
+
+.custom-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+.custom-option:hover {
+  background-color: var(--accent-brass-dim);
+  border-color: rgba(226, 177, 112, 0.2);
+  transform: translateX(3px);
+}
+
+.custom-option.is-selected {
+  background-color: rgba(226, 177, 112, 0.14);
+  border-color: rgba(226, 177, 112, 0.35);
+}
+
+.option-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.option-title {
+  font-size: 0.88rem;
+  font-weight: 600;
   color: var(--text-hero);
+  letter-spacing: -0.01em;
+}
+
+.option-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-brass);
+  background: rgba(226, 177, 112, 0.12);
+  border: 1px solid rgba(226, 177, 112, 0.25);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+}
+
+.option-check {
+  font-size: 0.95rem;
+  color: var(--accent-brass);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.custom-option.is-selected .option-check {
+  opacity: 1;
 }
 
 .form-helper {
