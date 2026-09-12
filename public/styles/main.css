@@ -945,33 +945,367 @@ button {
   color: var(--accent-brass);
 }
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
+/* ==========================================================================
+   Comprehensive Mobile & Tablet Responsive Design
+   ========================================================================== */
+
+/* --- Medium Tablets & Small Laptops (max-width: 1024px) --- */
+@media (max-width: 1024px) {
   .site-header {
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.75rem;
   }
-  
+
+  .hero-intro {
+    margin-bottom: 2.5rem;
+  }
+
   .hero-headline {
-    font-size: 2rem;
+    font-size: 2.8rem;
   }
 
   .editorial-card {
-    min-height: 350px;
-    padding: 1.75rem 1.5rem;
+    min-height: 380px;
+    padding: 2rem 1.75rem;
   }
 
-  .editorial-form-card {
-    padding: 1.75rem 1.25rem;
+  .card-title {
+    font-size: 1.35rem;
+  }
+}
+
+/* --- Tablets Portrait & Large Mobile (max-width: 768px) --- */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0.9rem 1.25rem;
+  }
+
+  .brand-tag {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 1.25rem;
+  }
+
+  .nav-item {
+    font-size: 0.72rem;
+  }
+
+  .editorial-hero-section {
+    padding: 2rem 0 2.5rem;
+  }
+
+  .hero-intro {
+    padding: 0 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-headline {
+    font-size: 2.2rem;
+    line-height: 1.15;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+  }
+
+  /* Slider Card Adjustments */
+  .editorial-card {
+    min-height: 350px;
+    padding: 1.75rem 1.35rem;
+    border-radius: var(--radius-md);
+  }
+
+  .card-top-bar {
+    margin-bottom: 1.2rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .card-excerpt {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3;
+    line-height: 1.55;
   }
 
   .card-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+  }
+
+  .card-author {
+    gap: 0.65rem;
+  }
+
+  .author-monogram {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+
+  .author-name {
+    font-size: 0.82rem;
   }
 
   .card-actions {
+    gap: 0.35rem;
+  }
+
+  .action-btn {
+    padding: 0.38rem 0.65rem;
+    font-size: 0.68rem;
+  }
+
+  /* Controls */
+  .slider-controls-wrap {
+    margin-top: 1.5rem;
+  }
+
+  .slider-controls {
+    padding: 0.4rem 1rem;
+    gap: 1.2rem;
+  }
+
+  .control {
+    width: 40px;
+    height: 40px;
+  }
+
+  .editorial-bottom-bar {
+    margin-top: 2.5rem;
+    padding: 0 1.25rem;
+  }
+
+  .btn-editorial-post {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.78rem;
+  }
+
+  /* Form Page on Tablet */
+  .editorial-form-section {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .editorial-form-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-title {
+    font-size: 1.85rem;
+  }
+}
+
+/* --- Mobile Phones (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 0.85rem 1rem;
+  }
+
+  .brand-logo {
+    gap: 0.6rem;
+  }
+
+  .brand-monogram {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+
+  .nav-links {
+    gap: 0.85rem;
+  }
+
+  .nav-item {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .editorial-hero-section {
+    padding: 1.5rem 0 2rem;
+  }
+
+  .hero-intro {
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-kicker {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-headline {
+    font-size: 1.85rem;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-description {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  /* Carousel Slide on Phones */
+  .splide__slide {
+    transform: scale(0.94);
+    opacity: 0.5;
+  }
+
+  .splide__slide.is-active {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .editorial-card {
+    min-height: 330px;
+    padding: 1.4rem 1.15rem;
+    border-radius: var(--radius-md);
+  }
+
+  .card-top-bar {
+    margin-bottom: 1rem;
+  }
+
+  .card-index {
+    font-size: 0.7rem;
+  }
+
+  .card-tag {
+    font-size: 0.62rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1.18rem;
+    line-height: 1.25;
+    -webkit-line-clamp: 3;
+  }
+
+  .card-excerpt {
+    font-size: 0.86rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .card-footer {
+    margin-top: 1.2rem;
+    padding-top: 0.85rem;
+  }
+
+  .author-monogram {
+    width: 28px;
+    height: 28px;
+    font-size: 0.65rem;
+  }
+
+  .author-name {
+    font-size: 0.8rem;
+  }
+
+  .author-date {
+    font-size: 0.68rem;
+  }
+
+  .action-btn {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.65rem;
+  }
+
+  /* Controls on small screens */
+  .slider-controls {
+    padding: 0.35rem 0.85rem;
+    gap: 1rem;
+  }
+
+  .control {
+    width: 38px;
+    height: 38px;
+  }
+
+  .control svg {
+    width: 16px;
+    height: 12px;
+  }
+
+  .slider-counter {
+    font-size: 0.78rem;
+  }
+
+  .editorial-bottom-bar {
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+
+  .btn-editorial-post {
     width: 100%;
-    justify-content: flex-end;
+    max-width: 280px;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.75rem;
+  }
+
+  /* Form Page on Small Phones */
+  .editorial-form-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .editorial-form-card {
+    padding: 1.5rem 1.15rem;
+    border-radius: var(--radius-md);
+  }
+
+  .form-title {
+    font-size: 1.6rem;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    font-size: 16px; /* Prevents iOS auto-zoom on input focus */
+    padding: 0.75rem 0.9rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .btn-editorial-submit,
+  .btn-ghost-cancel {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Footer on mobile */
+  .site-footer {
+    padding: 2rem 1.25rem;
+  }
+
+  .footer-inner {
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-meta-col {
+    align-items: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 }

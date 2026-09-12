@@ -21,7 +21,7 @@
   <!-- Splide Slider JS Library -->
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
-  <!-- Buttery Smooth Splide Carousel Controller -->
+  <!-- Responsive & Buttery Smooth Splide Carousel Controller -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const splideElement = document.querySelector('.splide');
@@ -36,46 +36,56 @@
         counterTotal.textContent = String(totalSlidesCount).padStart(2, '0');
       }
 
-      // Check if Splide library loaded successfully
       if (typeof Splide !== 'undefined' && totalSlidesCount > 0) {
         const isLoopable = totalSlidesCount >= 3;
         
-        // Premium 60fps/120fps buttery glide configuration
+        // Highly responsive, 60fps/120fps glide configuration
         const splide = new Splide('.splide', {
           type: isLoopable ? 'loop' : 'slide',
           perPage: 3,
           perMove: 1,
           focus: 'center',
           trimSpace: false,
-          gap: '2.25rem',
-          padding: { left: '8%', right: '8%' },
+          gap: '2rem',
+          padding: { left: '7%', right: '7%' },
           arrows: false,
           pagination: false,
           drag: true,
           
-          /* Butter-smooth physics & easing */
+          /* Butter-smooth physics */
           speed: 750,
           easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-          updateOnMove: true,        /* Smoothly scale active card DURING slide motion, not after */
-          waitForTransition: false,  /* Allow seamless rapid clicking without stalling */
+          updateOnMove: true,
+          waitForTransition: false,
           flickPower: 600,
           flickMaxPages: 1,
 
+          /* Responsive Breakpoint Adaptations */
           breakpoints: {
-            1100: {
+            1200: {
               perPage: 2,
-              gap: '1.5rem',
+              gap: '1.75rem',
               padding: { left: '6%', right: '6%' }
             },
-            720: {
+            860: {
+              perPage: 2,
+              gap: '1.25rem',
+              padding: { left: '4%', right: '4%' }
+            },
+            680: {
               perPage: 1,
               gap: '1rem',
-              padding: { left: '10%', right: '10%' }
+              padding: { left: '8%', right: '8%' }
+            },
+            480: {
+              perPage: 1,
+              gap: '0.75rem',
+              padding: { left: '5%', right: '5%' }
             }
           }
         });
 
-        // Update custom counter smoothly in real-time as slide moves
+        // Real-time counter update
         splide.on('move', (newIndex) => {
           if (counterCurrent) {
             const displayIndex = (newIndex % totalSlidesCount) + 1;
@@ -85,7 +95,7 @@
 
         splide.mount();
 
-        // Bespoke circular control buttons with smooth debounced triggers
+        // Control buttons with tactile touch support
         const prevBtn = document.querySelector('.prev-splide');
         const nextBtn = document.querySelector('.next-splide');
 
@@ -103,7 +113,7 @@
           });
         }
       } else {
-        // Fallback smooth scroll
+        // Fallback for offline/no-JS environments
         const track = document.querySelector('.splide__list');
         const prevBtn = document.querySelector('.prev-splide');
         const nextBtn = document.querySelector('.next-splide');
@@ -111,13 +121,13 @@
         if (prevBtn && track) {
           prevBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            track.scrollBy({ left: -380, behavior: 'smooth' });
+            track.scrollBy({ left: -window.innerWidth * 0.75, behavior: 'smooth' });
           });
         }
         if (nextBtn && track) {
           nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            track.scrollBy({ left: 380, behavior: 'smooth' });
+            track.scrollBy({ left: window.innerWidth * 0.75, behavior: 'smooth' });
           });
         }
       }
