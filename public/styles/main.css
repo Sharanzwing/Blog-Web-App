@@ -913,6 +913,62 @@ button {
   opacity: 1;
 }
 
+/* Custom Combobox Container (Editable Input with Matching Floating Dropdown) */
+.custom-combobox-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-chevron {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.combobox-input {
+  padding-right: 2.75rem !important;
+}
+
+.combobox-trigger-btn {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease;
+}
+
+.combobox-trigger-btn:hover {
+  color: var(--accent-brass);
+}
+
+.custom-combobox-container.is-open .combobox-input {
+  border-color: var(--accent-brass);
+  background-color: var(--bg-surface-elevated);
+  box-shadow: 0 0 0 3px var(--accent-brass-dim);
+}
+
+.custom-combobox-container.is-open .trigger-chevron {
+  transform: rotate(180deg);
+  color: var(--accent-brass);
+}
+
+.custom-combobox-container.is-open .custom-select-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
 .form-helper {
   font-family: var(--font-mono);
   font-size: 0.72rem;

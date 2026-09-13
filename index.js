@@ -2,7 +2,7 @@ import express from "express";
 import methodOverride from "method-override";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 let submittedData = [];
 
 app.set("view engine", "ejs");

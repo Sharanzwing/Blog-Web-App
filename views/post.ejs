@@ -32,7 +32,7 @@
       id="createPostForm"
     >
       
-      <!-- Field 1: slide-tag (Modern Custom Styled Dropdown) -->
+      <!-- Field 1: slide-tag (Custom Styled Dropdown) -->
       <div class="form-group">
         <label class="form-label" id="categoryLabel">
           Category &bull; Topic Tag <span class="required">*</span>
@@ -128,29 +128,74 @@
         <span class="form-helper">Category classification displayed on the card header.</span>
       </div>
 
-      <!-- Field 2: slide-heading -->
+      <!-- Field 2: slide-heading (Modern Dropdown Combobox) -->
       <div class="form-group">
         <label for="slideHeading" class="form-label">
           Headline / Title <span class="required">*</span>
         </label>
-        <input 
-          type="text" 
-          name="slideHeading" 
-          id="slideHeading" 
-          class="form-input" 
-          list="headingSuggestions"
-          value="<%= locals.post ? post.slideHeading : '' %>"
-          placeholder="e.g. The Architecture of High-Frequency Design Systems" 
-          required 
-          autocomplete="off"
-        />
-        <datalist id="headingSuggestions">
-          <option value="Modern UI/UX Principles for Editorial & Content Platforms"></option>
-          <option value="Mastering Express Routing and Middleware Architecture"></option>
-          <option value="Building Scalable Web Applications with Modern Node.js"></option>
-          <option value="The Philosophy of Restraint in Interface Design"></option>
-        </datalist>
-        <span class="form-helper">The primary editorial headline of your piece.</span>
+        
+        <div class="custom-combobox-container" id="headingCombobox">
+          <div class="input-with-chevron">
+            <input 
+              type="text" 
+              name="slideHeading" 
+              id="slideHeading" 
+              class="form-input combobox-input" 
+              value="<%= locals.post ? post.slideHeading : '' %>"
+              placeholder="e.g. The Architecture of High-Frequency Design Systems" 
+              required 
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-trigger-btn" aria-label="Toggle Headline Suggestions">
+              <span class="trigger-chevron">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 6 8 10 12 6"></polyline>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Modern Expanded Floating Menu (Identical Style) -->
+          <div class="custom-select-dropdown combobox-dropdown" role="listbox">
+            <div class="dropdown-header">
+              <span class="dropdown-kicker">// EDITORIAL HEADLINE SUGGESTIONS</span>
+            </div>
+
+            <div class="custom-option" data-value="Modern UI/UX Principles for Editorial &amp; Content Platforms" role="option">
+              <div class="option-main">
+                <span class="option-title">Modern UI/UX Principles for Editorial &amp; Content Platforms</span>
+                <span class="option-badge">DESIGN</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option" data-value="Mastering Express Routing and Middleware Architecture" role="option">
+              <div class="option-main">
+                <span class="option-title">Mastering Express Routing and Middleware Architecture</span>
+                <span class="option-badge">DEV</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option" data-value="Building Scalable Web Applications with Modern Node.js" role="option">
+              <div class="option-main">
+                <span class="option-title">Building Scalable Web Applications with Modern Node.js</span>
+                <span class="option-badge">ARCHITECTURE</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option" data-value="The Philosophy of Restraint in Modern Interface Design" role="option">
+              <div class="option-main">
+                <span class="option-title">The Philosophy of Restraint in Modern Interface Design</span>
+                <span class="option-badge">CRAFT</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+          </div>
+        </div>
+
+        <span class="form-helper">Type a custom headline or select an editorial suggestion from the dropdown.</span>
       </div>
 
       <!-- Field 3: slide-excerpt -->
@@ -169,29 +214,74 @@
         <span class="form-helper">Summary text rendered inside the carousel card body.</span>
       </div>
 
-      <!-- Field 4: author-name -->
+      <!-- Field 4: author-name (Modern Dropdown Combobox) -->
       <div class="form-group">
         <label for="authorName" class="form-label">
           Byline / Author Name <span class="required">*</span>
         </label>
-        <input 
-          type="text" 
-          name="authorName" 
-          id="authorName" 
-          class="form-input" 
-          list="authorSuggestions"
-          value="<%= locals.post ? post.authorName : '' %>"
-          placeholder="e.g. Sharan Raj" 
-          required 
-          autocomplete="name"
-        />
-        <datalist id="authorSuggestions">
-          <option value="Sharan Raj"></option>
-          <option value="Editorial Team"></option>
-          <option value="Guest Essayist"></option>
-          <option value="Code Contributor"></option>
-        </datalist>
-        <span class="form-helper">The author byline shown in the publication metadata.</span>
+
+        <div class="custom-combobox-container" id="authorCombobox">
+          <div class="input-with-chevron">
+            <input 
+              type="text" 
+              name="authorName" 
+              id="authorName" 
+              class="form-input combobox-input" 
+              value="<%= locals.post ? post.authorName : '' %>"
+              placeholder="e.g. Sharan Raj" 
+              required 
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-trigger-btn" aria-label="Toggle Author Suggestions">
+              <span class="trigger-chevron">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 6 8 10 12 6"></polyline>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Modern Expanded Floating Menu (Identical Style) -->
+          <div class="custom-select-dropdown combobox-dropdown" role="listbox">
+            <div class="dropdown-header">
+              <span class="dropdown-kicker">// SELECT OR TYPE AUTHOR BYLINE</span>
+            </div>
+
+            <div class="custom-option" data-value="Sharan Raj" role="option">
+              <div class="option-main">
+                <span class="option-title">Sharan Raj</span>
+                <span class="option-badge">AUTHOR</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option" data-value="Editorial Team" role="option">
+              <div class="option-main">
+                <span class="option-title">Editorial Team</span>
+                <span class="option-badge">CURATOR</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option" data-value="Guest Essayist" role="option">
+              <div class="option-main">
+                <span class="option-title">Guest Essayist</span>
+                <span class="option-badge">CONTRIBUTOR</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+
+            <div class="custom-option" data-value="Code Contributor" role="option">
+              <div class="option-main">
+                <span class="option-title">Code Contributor</span>
+                <span class="option-badge">OPEN SOURCE</span>
+              </div>
+              <span class="option-check">&check;</span>
+            </div>
+          </div>
+        </div>
+
+        <span class="form-helper">Type your author name or select a byline profile from the dropdown.</span>
       </div>
 
       <!-- Automated Meta Notice -->
@@ -219,63 +309,152 @@
   </div>
 </section>
 
-<!-- Custom Dropdown Controller Script -->
+<!-- Unified Custom Dropdowns & Comboboxes Controller -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('customSelectContainer');
-    const trigger = document.getElementById('customSelectTrigger');
-    const dropdown = document.getElementById('customSelectDropdown');
-    const triggerLabel = document.getElementById('triggerLabel');
-    const nativeSelect = document.getElementById('slideTag');
+    // 1. Setup Category Custom Select
+    setupCustomSelect('customSelectContainer', 'customSelectTrigger', 'customSelectDropdown', 'triggerLabel', 'slideTag');
 
-    if (!container || !trigger || !dropdown || !nativeSelect) return;
+    // 2. Setup Headline Combobox Dropdown
+    setupCombobox('headingCombobox', 'slideHeading');
 
-    const options = dropdown.querySelectorAll('.custom-option');
+    // 3. Setup Author Combobox Dropdown
+    setupCombobox('authorCombobox', 'authorName');
 
-    // Toggle dropdown expansion
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const isOpen = container.classList.toggle('is-open');
-      trigger.setAttribute('aria-expanded', isOpen);
-    });
+    // Helper: Category Select
+    function setupCustomSelect(containerId, triggerId, dropdownId, labelId, nativeSelectId) {
+      const container = document.getElementById(containerId);
+      const trigger = document.getElementById(triggerId);
+      const dropdown = document.getElementById(dropdownId);
+      const triggerLabel = document.getElementById(labelId);
+      const nativeSelect = document.getElementById(nativeSelectId);
 
-    // Handle option selection
-    options.forEach((opt) => {
-      opt.addEventListener('click', (e) => {
+      if (!container || !trigger || !dropdown || !nativeSelect) return;
+      const options = dropdown.querySelectorAll('.custom-option');
+
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
-        const value = opt.getAttribute('data-value');
+        closeAllExcept(container);
+        const isOpen = container.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen);
+      });
 
-        // Update native select for backend Express submission
-        nativeSelect.value = value;
+      options.forEach((opt) => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const value = opt.getAttribute('data-value');
+          nativeSelect.value = value;
+          triggerLabel.textContent = value;
+          trigger.classList.add('has-value');
 
-        // Update trigger UI
-        triggerLabel.textContent = value;
-        trigger.classList.add('has-value');
+          options.forEach((o) => o.classList.remove('is-selected'));
+          opt.classList.add('is-selected');
 
-        // Mark active item
-        options.forEach((o) => o.classList.remove('is-selected'));
-        opt.classList.add('is-selected');
+          container.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
 
-        // Close dropdown
+    // Helper: Combobox (Editable Input + Custom Floating Dropdown)
+    function setupCombobox(containerId, inputId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const input = document.getElementById(inputId);
+      const triggerBtn = container.querySelector('.combobox-trigger-btn');
+      const dropdown = container.querySelector('.custom-select-dropdown');
+      if (!input || !dropdown) return;
+
+      const options = dropdown.querySelectorAll('.custom-option');
+
+      // Check initial selected state
+      const initialVal = input.value.trim().toLowerCase();
+      if (initialVal) {
+        options.forEach(opt => {
+          if (opt.getAttribute('data-value').trim().toLowerCase() === initialVal) {
+            opt.classList.add('is-selected');
+          }
+        });
+      }
+
+      function openMenu() {
+        closeAllExcept(container);
+        container.classList.add('is-open');
+        if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeMenu() {
         container.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
+        if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      // Toggle on chevron button click
+      if (triggerBtn) {
+        triggerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          container.classList.contains('is-open') ? closeMenu() : openMenu();
+        });
+      }
+
+      // Open on input focus
+      input.addEventListener('focus', () => {
+        openMenu();
+      });
+
+      // Select an option from the dropdown
+      options.forEach((opt) => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const value = opt.getAttribute('data-value');
+          input.value = value;
+
+          options.forEach((o) => o.classList.remove('is-selected'));
+          opt.classList.add('is-selected');
+
+          closeMenu();
+          input.focus();
+        });
+      });
+
+      // Synchronize checkmarks if user types manually
+      input.addEventListener('input', () => {
+        const cur = input.value.trim().toLowerCase();
+        options.forEach(opt => {
+          const val = opt.getAttribute('data-value').trim().toLowerCase();
+          opt.classList.toggle('is-selected', cur.length > 0 && cur === val);
+        });
+      });
+    }
+
+    // Helper: Close all dropdowns
+    function closeAllExcept(activeContainer) {
+      document.querySelectorAll('.custom-select-container, .custom-combobox-container').forEach(c => {
+        if (c !== activeContainer) {
+          c.classList.remove('is-open');
+          const t = c.querySelector('button');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Global click outside to close
+    document.addEventListener('click', (e) => {
+      document.querySelectorAll('.custom-select-container.is-open, .custom-combobox-container.is-open').forEach(c => {
+        if (!c.contains(e.target)) {
+          c.classList.remove('is-open');
+          const t = c.querySelector('button');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
       });
     });
 
-    // Close when clicking anywhere outside
-    document.addEventListener('click', (e) => {
-      if (!container.contains(e.target)) {
-        container.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Close on Escape key
+    // Global Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        container.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
+        closeAllExcept(null);
       }
     });
   });
