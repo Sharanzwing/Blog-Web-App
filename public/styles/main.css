@@ -53,6 +53,50 @@
   padding: 0;
 }
 
+/* Custom Editorial Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-canvas);
+  transition: background 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-brass);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) var(--bg-canvas);
+}
+
+/* High-Contrast Luxury Selection */
+::selection {
+  background: rgba(226, 177, 112, 0.28);
+  color: var(--text-hero);
+}
+
+::-moz-selection {
+  background: rgba(226, 177, 112, 0.28);
+  color: var(--text-hero);
+}
+
+/* Refined Accessible Focus States */
+:focus-visible {
+  outline: 2px solid var(--accent-brass);
+  outline-offset: 3px;
+}
+
 html {
   background-color: var(--bg-canvas);
   color: var(--text-hero);
@@ -68,7 +112,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-canvas);
-  background-image: radial-gradient(circle at 50% 0%, rgba(226, 177, 112, 0.035) 0%, transparent 55%);
+  background-image: radial-gradient(circle at 50% 0%, rgba(226, 177, 112, 0.04) 0%, transparent 60%);
   background-repeat: no-repeat;
 }
 
@@ -320,10 +364,20 @@ button {
 .splide__slide.is-active .editorial-card {
   background-color: var(--bg-surface-elevated);
   border-color: var(--border-subtle);
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+}
+
+.splide__slide.is-active .editorial-card:hover {
+  border-color: rgba(226, 177, 112, 0.45);
+  box-shadow: 0 24px 54px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(226, 177, 112, 0.18);
 }
 
 .splide__slide.is-active .editorial-card.is-user-card {
   border-color: var(--border-active);
+}
+
+.splide__slide.is-active .editorial-card.is-user-card:hover {
+  border-color: var(--accent-brass);
 }
 
 /* Card Top Bar */
@@ -417,6 +471,13 @@ button {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.editorial-card:hover .author-monogram {
+  border-color: var(--accent-brass);
+  color: var(--accent-brass);
+  box-shadow: 0 0 14px rgba(226, 177, 112, 0.2);
 }
 
 .author-info {
@@ -606,6 +667,15 @@ button {
 
 .btn-editorial-post:hover .btn-arrow {
   transform: translateX(4px);
+}
+
+/* Tactile Active Press States */
+.btn-editorial-post:active,
+.btn-editorial-submit:active,
+.btn-ghost-cancel:active,
+.control:active,
+.action-btn:active {
+  transform: scale(0.96) !important;
 }
 
 /* --- Form Page Styling (post.ejs) --- */
